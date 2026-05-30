@@ -353,11 +353,27 @@ def upload_image_to_imgbb(image_path):
     raise Exception(f"Upload falhou: {resp.text}")
 
 def upload_image_simple(image_path):
-    """Retorna URL pública da imagem para o Instagram (Supabase Storage)."""
+    """Faz upload da imagem para host público e retorna a URL."""
     img_name = Path(image_path).name
-    url = f"{SB_BUCKET}/{img_name}"
-    print(f"  → Usando URL do Supabase Storage")
-    return url
+
+    # Opção 1: 0x0.st — anônimo, permanente, aceito pela Meta
+    try:
+        with open(image_path, "rb") as f:
+            resp = requests.post("https://0x0.st", files={"file": (img_name, f, "image/png")}, timeout=30)
+        if resp.ok and resp.text.strip().startswith("https://"):
+            url = resp.text.strip()
+            print(f"  → Upload para 0x0.st OK")
+            return url
+    except Exception as e:
+        print(f"  → 0x0.st falhou: {e}")
+
+    # Opção 2: Supabase Storage (fallback)
+    if SUPABASE_URL:
+        url = f"{SB_BUCKET}/{img_name}"
+        print(f"  → Usando URL do Supabase Storage (fallback)")
+        return url
+
+    raise Exception(f"Não foi possível hospedar a imagem: {img_name}")
 
 def publish_post(post, image_url):
     """Publica um post no Instagram via Meta Graph API."""
