@@ -1,5 +1,11 @@
 # Credenciais — NUNCA commitar
 .env
+GITHUB_SETUP.md
+wasfit_supabase_setup.py
+wasfit_setup_launchd.sh
+wasfit_stop_launchd.sh
+github_setup.sh
+update_workflow.sh
 
 # Logs
 logs/
