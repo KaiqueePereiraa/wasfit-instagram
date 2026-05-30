@@ -1,9 +1,6 @@
 # Credenciais — NUNCA commitar
 .env
 
-# Imagens dos posts (grandes, já estão no Supabase)
-Posts Instagram/*.png
-
 # Logs
 logs/
 *.log
