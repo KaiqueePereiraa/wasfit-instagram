@@ -1,0 +1,38 @@
+name: WasFit Instagram Publisher
+
+on:
+  schedule:
+    # Horários em UTC (Brasil = UTC-3)
+    # Segunda 08:00 BRT = 11:00 UTC  → posts 02, 05, 08, 11, 14
+    - cron: '0 11 * * 1'
+    # Quarta 12:00 BRT = 15:00 UTC  → posts 03, 06, 09, 12
+    - cron: '0 15 * * 3'
+    # Sexta  17:00 BRT = 20:00 UTC  → posts 04, 07, 10, 13
+    - cron: '0 20 * * 5'
+
+  # Permite disparar manualmente pelo GitHub
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: pip install requests
+
+      - name: Publicar post do dia
+        env:
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          PAGE_ID: ${{ secrets.PAGE_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python3 wasfit_publisher.py --publish

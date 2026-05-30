@@ -1,0 +1,20 @@
+# Credenciais — NUNCA commitar
+.env
+
+# Imagens dos posts (grandes, já estão no Supabase)
+Posts Instagram/*.png
+
+# Logs
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+
+# Scripts auxiliares temporários
+agendar_post01.py
