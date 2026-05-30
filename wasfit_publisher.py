@@ -353,30 +353,11 @@ def upload_image_to_imgbb(image_path):
     raise Exception(f"Upload falhou: {resp.text}")
 
 def upload_image_simple(image_path):
-    """Retorna URL pública da imagem para o Instagram."""
+    """Retorna URL pública da imagem para o Instagram (Supabase Storage)."""
     img_name = Path(image_path).name
-    # Opção 1: URL raw do GitHub (imagens já commitadas no repo)
-    github_url = f"https://raw.githubusercontent.com/KaiqueePereiraa/wasfit-instagram/main/Posts%20Instagram/{img_name}"
-    try:
-        r = requests.head(github_url, timeout=10)
-        if r.status_code == 200:
-            print(f"  → Usando URL do GitHub raw")
-            return github_url
-    except:
-        pass
-
-    # Opção 2: URL do Supabase Storage
-    if SUPABASE_URL:
-        url = f"{SB_BUCKET}/{img_name}"
-        try:
-            r = requests.head(url, timeout=5)
-            if r.status_code == 200:
-                print(f"  → Usando URL do Supabase Storage")
-                return url
-        except:
-            pass
-
-    raise Exception(f"Imagem não acessível via GitHub raw nem Supabase: {img_name}")
+    url = f"{SB_BUCKET}/{img_name}"
+    print(f"  → Usando URL do Supabase Storage")
+    return url
 
 def publish_post(post, image_url):
     """Publica um post no Instagram via Meta Graph API."""
