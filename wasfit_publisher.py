@@ -48,7 +48,7 @@ POSTS = [
     {
         "num": "01",
         "date": "2026-05-30",
-        "hora": "18:00",
+        "hora": "18:30",
         "image": "post01_v5_30mai.png",
         "caption": """Em 2026, o lead que não recebe resposta em 5 minutos já foi para o concorrente. 📲
 

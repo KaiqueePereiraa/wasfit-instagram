@@ -3,8 +3,8 @@ name: WasFit Instagram Publisher
 on:
   schedule:
     # Horários em UTC (Brasil = UTC-3)
-    # Post 01 — hoje 30/mai às 18:00 BRT = 21:00 UTC
-    - cron: '0 21 30 5 *'
+    # Post 01 — hoje 30/mai às 18:30 BRT = 21:30 UTC
+    - cron: '30 21 30 5 *'
     # Segunda 08:00 BRT = 11:00 UTC  → posts 02, 05, 08, 11, 14
     - cron: '0 11 * * 1'
     # Quarta 12:00 BRT = 15:00 UTC  → posts 03, 06, 09, 12
