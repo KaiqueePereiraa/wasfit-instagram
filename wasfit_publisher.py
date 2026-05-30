@@ -353,12 +353,21 @@ def upload_image_to_imgbb(image_path):
     raise Exception(f"Upload falhou: {resp.text}")
 
 def upload_image_simple(image_path):
-    """Usa URL pública do Supabase se disponível, senão faz upload para Catbox."""
-    # Tenta usar URL do Supabase Storage (já upadas, sem precisar de upload)
+    """Retorna URL pública da imagem para o Instagram."""
+    img_name = Path(image_path).name
+    # Opção 1: URL raw do GitHub (imagens já commitadas no repo)
+    github_url = f"https://raw.githubusercontent.com/KaiqueePereiraa/wasfit-instagram/main/Posts%20Instagram/{img_name}"
+    try:
+        r = requests.head(github_url, timeout=10)
+        if r.status_code == 200:
+            print(f"  → Usando URL do GitHub raw")
+            return github_url
+    except:
+        pass
+
+    # Opção 2: URL do Supabase Storage
     if SUPABASE_URL:
-        img_name = Path(image_path).name
         url = f"{SB_BUCKET}/{img_name}"
-        # Verifica se a URL está acessível
         try:
             r = requests.head(url, timeout=5)
             if r.status_code == 200:
@@ -367,16 +376,7 @@ def upload_image_simple(image_path):
         except:
             pass
 
-    # Fallback: upload para Catbox.moe
-    with open(image_path, "rb") as f:
-        resp = requests.post(
-            "https://catbox.moe/user/api.php",
-            data={"reqtype": "fileupload"},
-            files={"fileToUpload": f}
-        )
-    if resp.ok and resp.text.strip().startswith("https://"):
-        return resp.text.strip()
-    raise Exception(f"Upload falhou: {resp.text}")
+    raise Exception(f"Imagem não acessível via GitHub raw nem Supabase: {img_name}")
 
 def publish_post(post, image_url):
     """Publica um post no Instagram via Meta Graph API."""
