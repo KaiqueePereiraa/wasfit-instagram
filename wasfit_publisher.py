@@ -64,8 +64,8 @@ Pergunta: quanto tempo sua equipe leva pra responder um lead que chega às 22h?
     },
     {
         "num": "02",
-        "date": "2026-06-02",
-        "hora": "08:00",
+        "date": "2026-06-01",
+        "hora": "12:00",
         "image": "post02_v5_02jun.png",
         "caption": """Você investe em tráfego, o lead chega… e vai embora em silêncio. 🤫
 
