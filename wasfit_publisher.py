@@ -65,7 +65,7 @@ Pergunta: quanto tempo sua equipe leva pra responder um lead que chega às 22h?
     {
         "num": "02",
         "date": "2026-06-01",
-        "hora": "12:00",
+        "hora": "08:00",
         "image": "post02_v5_02jun.png",
         "caption": """Você investe em tráfego, o lead chega… e vai embora em silêncio. 🤫
 
@@ -85,7 +85,7 @@ Arrasta pro lado pra ver como funciona na prática 👉
     },
     {
         "num": "03",
-        "date": "2026-06-04",
+        "date": "2026-06-03",
         "hora": "12:00",
         "image": "post03_v5_04jun.png",
         "caption": """Quantos leads estão parados esperando um follow-up da sua equipe agora? 🤔
@@ -104,7 +104,7 @@ Comenta "QUERO VER" e a gente te mostra ao vivo. 👇
     },
     {
         "num": "04",
-        "date": "2026-06-06",
+        "date": "2026-06-05",
         "hora": "17:00",
         "image": "post04_v5_06jun.png",
         "caption": """Spoiler: sim. E está acontecendo agora em academias que já acordaram para a IA. 🤖
@@ -122,7 +122,7 @@ Salva esse post pra mostrar pro sócio na próxima reunião. 💾
     },
     {
         "num": "05",
-        "date": "2026-06-09",
+        "date": "2026-06-08",
         "hora": "08:00",
         "image": "post05_v5_09jun.png",
         "caption": """Estudos mostram: responder um lead em até 5 minutos aumenta a chance de conversão em até 9x.
@@ -143,7 +143,7 @@ Arrasta pra entender o passo a passo 👉
     },
     {
         "num": "06",
-        "date": "2026-06-11",
+        "date": "2026-06-10",
         "hora": "12:00",
         "image": "post06_v5_11jun.png",
         "caption": """Disparo em massa feito errado = número bloqueado + reputação destruída. ❌
@@ -163,7 +163,7 @@ Sua academia usa disparos em massa hoje? Comenta aqui! 👇
     },
     {
         "num": "07",
-        "date": "2026-06-13",
+        "date": "2026-06-12",
         "hora": "17:00",
         "image": "post07_v5_13jun.png",
         "caption": """Em 2026, o diferencial competitivo não é mais a esteira ou o equipamento — é a experiência do aluno antes mesmo de entrar pela sua porta. 🚪
@@ -182,7 +182,7 @@ Conta pra gente nos comentários! 👇
     },
     {
         "num": "08",
-        "date": "2026-06-16",
+        "date": "2026-06-15",
         "hora": "08:00",
         "image": "post08_v5_16jun.png",
         "caption": """Captar um novo aluno custa até 7x mais do que manter um que já está com você. 💸
@@ -205,7 +205,7 @@ Salva esse post. 💾
     },
     {
         "num": "09",
-        "date": "2026-06-18",
+        "date": "2026-06-17",
         "hora": "12:00",
         "image": "post09_v5_18jun.png",
         "caption": """Já tentou usar um chatbot genérico na sua academia e ficou uma bagunça? 😅
@@ -227,7 +227,7 @@ Acesse wasfit.com.br e veja como funciona.
     },
     {
         "num": "10",
-        "date": "2026-06-20",
+        "date": "2026-06-19",
         "hora": "17:00",
         "image": "post10_v5_20jun.png",
         "caption": """Em 2026, o brasileiro passa mais tempo no WhatsApp do que em qualquer outro app. 📱
@@ -253,7 +253,7 @@ Toca no link da bio e testa grátis. 🔗
     },
     {
         "num": "11",
-        "date": "2026-06-23",
+        "date": "2026-06-22",
         "hora": "08:00",
         "image": "post11_v5_23jun.png",
         "caption": """Reter aluno é mais barato que captar. Mas exige consistência — e é aí que a maioria falha. 👇
@@ -276,7 +276,7 @@ Salva pra aplicar na sua academia! 💾
     },
     {
         "num": "12",
-        "date": "2026-06-25",
+        "date": "2026-06-24",
         "hora": "12:00",
         "image": "post12_v5_25jun.png",
         "caption": """Quantas vezes o "combinado" ficou perdido no grupo de WhatsApp da equipe? 😅
@@ -295,7 +295,7 @@ Quer ver como funciona na prática? Comenta "DEMO" aqui embaixo 👇
     },
     {
         "num": "13",
-        "date": "2026-06-27",
+        "date": "2026-06-26",
         "hora": "17:00",
         "image": "post13_v5_27jun.png",
         "caption": """Em maio de 2026, a Meta anunciou planos de IA integrados a todos os seus apps — incluindo WhatsApp. 📡
@@ -316,7 +316,7 @@ O futuro chegou. Você está dentro ou fora? 🔗 wasfit.com.br
     },
     {
         "num": "14",
-        "date": "2026-06-30",
+        "date": "2026-06-29",
         "hora": "08:00",
         "image": "post14_v5_30jun.png",
         "caption": """Antes de sair contratando qualquer ferramenta, se faz essas perguntas: 📋

@@ -2,17 +2,25 @@ name: WasFit Instagram Publisher
 
 on:
   schedule:
-    # Horários em UTC (Brasil = UTC-3)
-    # Post 02 — hoje 01/jun às 12:00 BRT = 15:00 UTC
-    - cron: '0 15 1 6 *'
+    # ── Horários principais (BRT = UTC-3) ─────────────────────────
     # Segunda 08:00 BRT = 11:00 UTC  → posts 02, 05, 08, 11, 14
     - cron: '0 11 * * 1'
-    # Quarta 12:00 BRT = 15:00 UTC  → posts 03, 06, 09, 12
+    # Quarta  12:00 BRT = 15:00 UTC  → posts 03, 06, 09, 12
     - cron: '0 15 * * 3'
-    # Sexta  17:00 BRT = 20:00 UTC  → posts 04, 07, 10, 13
+    # Sexta   17:00 BRT = 20:00 UTC  → posts 04, 07, 10, 13
     - cron: '0 20 * * 5'
 
-  # Permite disparar manualmente pelo GitHub
+    # ── Backup +30 min (caso a tentativa principal falhe) ─────────
+    - cron: '30 11 * * 1'   # Segunda 08:30 BRT
+    - cron: '30 15 * * 3'   # Quarta  12:30 BRT
+    - cron: '30 20 * * 5'   # Sexta   17:30 BRT
+
+    # ── Backup +60 min (segunda barreira de contenção) ───────────
+    - cron: '0 12 * * 1'    # Segunda 09:00 BRT
+    - cron: '0 16 * * 3'    # Quarta  13:00 BRT
+    - cron: '0 21 * * 5'    # Sexta   18:00 BRT
+
+  # Disparo manual pelo GitHub
   workflow_dispatch:
 
 jobs:
@@ -30,7 +38,42 @@ jobs:
       - name: Instalar dependências
         run: pip install requests
 
-      - name: Publicar post do dia
+      # ── Tentativa 1 ───────────────────────────────────────────────
+      - name: Publicar post (tentativa 1)
+        id: try1
+        continue-on-error: true
+        env:
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          PAGE_ID: ${{ secrets.PAGE_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python3 wasfit_publisher.py --publish
+
+      # ── Tentativa 2 (só roda se a 1 falhar) ──────────────────────
+      - name: Aguardar 2 min antes de tentar novamente
+        if: steps.try1.outcome == 'failure'
+        run: sleep 120
+
+      - name: Publicar post (tentativa 2)
+        id: try2
+        if: steps.try1.outcome == 'failure'
+        continue-on-error: true
+        env:
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          PAGE_ID: ${{ secrets.PAGE_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python3 wasfit_publisher.py --publish
+
+      # ── Tentativa 3 (só roda se a 2 falhar) ──────────────────────
+      - name: Aguardar 5 min antes da tentativa final
+        if: steps.try2.outcome == 'failure'
+        run: sleep 300
+
+      - name: Publicar post (tentativa 3 — final)
+        if: steps.try2.outcome == 'failure'
         env:
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
           PAGE_ID: ${{ secrets.PAGE_ID }}
