@@ -29,6 +29,8 @@ jobs:
     steps:
       - name: Checkout repositório
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -46,8 +48,6 @@ jobs:
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
           PAGE_ID: ${{ secrets.PAGE_ID }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: python3 wasfit_publisher.py --publish
 
       # ── Tentativa 2 (só roda se a 1 falhar) ──────────────────────
@@ -63,8 +63,6 @@ jobs:
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
           PAGE_ID: ${{ secrets.PAGE_ID }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: python3 wasfit_publisher.py --publish
 
       # ── Tentativa 3 (só roda se a 2 falhar) ──────────────────────
@@ -78,6 +76,13 @@ jobs:
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
           PAGE_ID: ${{ secrets.PAGE_ID }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: python3 wasfit_publisher.py --publish
+
+      - name: Salvar published.json no repositório
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add published.json || true
+          git diff --cached --quiet || git commit -m "chore: atualiza published.json [skip ci]"
+          git push || true

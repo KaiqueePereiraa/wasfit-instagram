@@ -10,9 +10,24 @@ USO:
   python3 wasfit_publisher.py --test      # testa conexão com a API
 """
 
-import os, sys, json, time, base64, requests
+import os, sys, json, time, base64, requests, fcntl
 from datetime import datetime, timezone
 from pathlib import Path
+
+# ── LOCK — impede duas instâncias simultâneas ─────────────────────────────────
+_LOCK_FILE = Path(__file__).parent / ".wasfit_publisher.lock"
+
+def acquire_lock():
+    """Tenta adquirir lock exclusivo. Sai se outra instância já estiver rodando."""
+    lock_fd = open(_LOCK_FILE, "w")
+    try:
+        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        print("⚠️  Outra instância do publisher já está rodando. Saindo.")
+        sys.exit(0)
+    return lock_fd  # mantém aberto para segurar o lock
+
+_lock_fd = None  # será atribuído no main
 
 # ── CONFIGURAÇÃO — lê credenciais do .env ────────────────────────────────────
 def load_env():
@@ -437,32 +452,31 @@ def show_schedule():
         print(f"#{p['num']:<5} {p['date']:<14} {p['hora']:<8} {status:<12} {p['image']}")
     print()
 
+_PUBLISHED_FILE = Path(__file__).parent / "published.json"
+
+def _load_published():
+    if _PUBLISHED_FILE.exists():
+        try:
+            return json.loads(_PUBLISHED_FILE.read_text())
+        except:
+            pass
+    return {}
+
+def _save_published(data):
+    _PUBLISHED_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+
 def supabase_get_status(num):
-    """Consulta status do post no Supabase."""
-    try:
-        if not SUPABASE_URL or not SUPABASE_KEY:
-            return None
-        r = requests.get(f"{SUPABASE_URL}/rest/v1/wasfit_posts?num=eq.{num}&select=status",
-            headers={"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"})
-        if r.status_code == 200 and r.json():
-            return r.json()[0].get("status")
-    except:
-        pass
-    return None
+    return _load_published().get(str(num), {}).get("status")
 
 def supabase_mark_published(num, instagram_post_id):
-    """Marca post como publicado no Supabase."""
-    try:
-        if not SUPABASE_URL or not SUPABASE_KEY:
-            return
-        requests.patch(f"{SUPABASE_URL}/rest/v1/wasfit_posts?num=eq.{num}",
-            headers={"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}",
-                     "Content-Type": "application/json"},
-            json={"status": "published", "instagram_post_id": instagram_post_id,
-                  "published_at": datetime.now().isoformat()})
-        print(f"  → Supabase atualizado: published")
-    except:
-        pass
+    data = _load_published()
+    data[str(num)] = {
+        "status": "published",
+        "instagram_post_id": instagram_post_id,
+        "published_at": datetime.now().isoformat()
+    }
+    _save_published(data)
+    print(f"  → published.json atualizado: published")
 
 def publish_today():
     """Publica o post agendado para hoje SE o horário agendado já chegou."""
@@ -528,6 +542,10 @@ def publish_all_pending():
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     args = sys.argv[1:]
+
+    # Adquire lock antes de qualquer ação que publique
+    if "--publish" in args or "--all" in args:
+        _lock_fd = acquire_lock()
 
     if "--test" in args:
         test_connection()
