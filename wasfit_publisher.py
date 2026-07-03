@@ -62,9 +62,9 @@ SB_BUCKET = f"{SUPABASE_URL}/storage/v1/object/public/wasfit-posts"
 POSTS = [
     {
         "num": "01",
-        "date": "2026-05-30",
-        "hora": "18:30",
-        "image": "post01_v5_30mai.png",
+        "date": "2026-07-06",
+        "hora": "08:00",
+        "image": "post01_v8_06jul.png",
         "caption": """Em 2026, o lead que não recebe resposta em 5 minutos já foi para o concorrente. 📲
 
 A boa notícia: a IA já resolve isso por você — 24h por dia, 7 dias por semana, sem hora extra, sem folga.
@@ -79,9 +79,9 @@ Pergunta: quanto tempo sua equipe leva pra responder um lead que chega às 22h?
     },
     {
         "num": "02",
-        "date": "2026-06-01",
-        "hora": "08:00",
-        "image": "post02_v5_02jun.png",
+        "date": "2026-07-08",
+        "hora": "12:00",
+        "image": "post02_v8_08jul.png",
         "caption": """Você investe em tráfego, o lead chega… e vai embora em silêncio. 🤫
 
 Os 3 motivos mais comuns:
@@ -100,9 +100,9 @@ Arrasta pro lado pra ver como funciona na prática 👉
     },
     {
         "num": "03",
-        "date": "2026-06-03",
-        "hora": "12:00",
-        "image": "post03_v5_04jun.png",
+        "date": "2026-07-10",
+        "hora": "17:00",
+        "image": "post03_v8_10jul.png",
         "caption": """Quantos leads estão parados esperando um follow-up da sua equipe agora? 🤔
 
 Com o Kanban da WasFit, sua equipe enxerga cada lead em tempo real — desde o primeiro contato até a matrícula fechada.
@@ -119,9 +119,9 @@ Comenta "QUERO VER" e a gente te mostra ao vivo. 👇
     },
     {
         "num": "04",
-        "date": "2026-06-05",
-        "hora": "17:00",
-        "image": "post04_v5_06jun.png",
+        "date": "2026-07-13",
+        "hora": "08:00",
+        "image": "post04_v8_13jul.png",
         "caption": """Spoiler: sim. E está acontecendo agora em academias que já acordaram para a IA. 🤖
 
 Enquanto você dorme:
@@ -137,9 +137,9 @@ Salva esse post pra mostrar pro sócio na próxima reunião. 💾
     },
     {
         "num": "05",
-        "date": "2026-06-08",
-        "hora": "08:00",
-        "image": "post05_v5_09jun.png",
+        "date": "2026-07-15",
+        "hora": "12:00",
+        "image": "post05_v8_15jul.png",
         "caption": """Estudos mostram: responder um lead em até 5 minutos aumenta a chance de conversão em até 9x.
 
 Parece simples. Mas quantas academias conseguem isso de verdade?
@@ -158,9 +158,9 @@ Arrasta pra entender o passo a passo 👉
     },
     {
         "num": "06",
-        "date": "2026-06-10",
-        "hora": "12:00",
-        "image": "post06_v5_11jun.png",
+        "date": "2026-07-17",
+        "hora": "17:00",
+        "image": "post06_v8_17jul.png",
         "caption": """Disparo em massa feito errado = número bloqueado + reputação destruída. ❌
 
 Feito certo = alunos rematriculam, promoções que vendem, comunicados que chegam. ✅
@@ -178,9 +178,9 @@ Sua academia usa disparos em massa hoje? Comenta aqui! 👇
     },
     {
         "num": "07",
-        "date": "2026-06-12",
-        "hora": "17:00",
-        "image": "post07_v5_13jun.png",
+        "date": "2026-07-20",
+        "hora": "08:00",
+        "image": "post07_v8_20jul.png",
         "caption": """Em 2026, o diferencial competitivo não é mais a esteira ou o equipamento — é a experiência do aluno antes mesmo de entrar pela sua porta. 🚪
 
 As academias que crescem hoje têm algo em comum:
@@ -197,9 +197,9 @@ Conta pra gente nos comentários! 👇
     },
     {
         "num": "08",
-        "date": "2026-06-15",
-        "hora": "08:00",
-        "image": "post08_v5_16jun.png",
+        "date": "2026-07-22",
+        "hora": "12:00",
+        "image": "post08_v8_22jul.png",
         "caption": """Captar um novo aluno custa até 7x mais do que manter um que já está com você. 💸
 
 Então por que a maioria das academias foca só em novos leads e esquece quem está saindo pela porta dos fundos?
@@ -220,9 +220,9 @@ Salva esse post. 💾
     },
     {
         "num": "09",
-        "date": "2026-06-17",
-        "hora": "12:00",
-        "image": "post09_v5_18jun.png",
+        "date": "2026-07-24",
+        "hora": "17:00",
+        "image": "post09_v8_24jul.png",
         "caption": """Já tentou usar um chatbot genérico na sua academia e ficou uma bagunça? 😅
 
 Isso acontece porque ele não sabe o que é uma aula experimental, não entende de planos mensais vs. semestrais, e muito menos sabe como convencer alguém a manter a consistência nos treinos.
@@ -242,9 +242,9 @@ Acesse wasfit.com.br e veja como funciona.
     },
     {
         "num": "10",
-        "date": "2026-06-19",
-        "hora": "17:00",
-        "image": "post10_v5_20jun.png",
+        "date": "2026-07-27",
+        "hora": "08:00",
+        "image": "post10_v8_27jul.png",
         "caption": """Em 2026, o brasileiro passa mais tempo no WhatsApp do que em qualquer outro app. 📱
 
 E adivinha onde seu lead vai perguntar sobre preço, planos e horários?
@@ -268,9 +268,9 @@ Toca no link da bio e testa grátis. 🔗
     },
     {
         "num": "11",
-        "date": "2026-06-22",
-        "hora": "08:00",
-        "image": "post11_v5_23jun.png",
+        "date": "2026-07-29",
+        "hora": "12:00",
+        "image": "post11_v8_29jul.png",
         "caption": """Reter aluno é mais barato que captar. Mas exige consistência — e é aí que a maioria falha. 👇
 
 As 5 ações que funcionam:
@@ -291,9 +291,9 @@ Salva pra aplicar na sua academia! 💾
     },
     {
         "num": "12",
-        "date": "2026-06-24",
-        "hora": "12:00",
-        "image": "post12_v5_25jun.png",
+        "date": "2026-07-31",
+        "hora": "17:00",
+        "image": "post12_v8_31jul.png",
         "caption": """Quantas vezes o "combinado" ficou perdido no grupo de WhatsApp da equipe? 😅
 
 A WasFit tem um chat interno integrado à plataforma — pra sua equipe se comunicar sem sair do sistema.
@@ -310,9 +310,9 @@ Quer ver como funciona na prática? Comenta "DEMO" aqui embaixo 👇
     },
     {
         "num": "13",
-        "date": "2026-06-26",
-        "hora": "17:00",
-        "image": "post13_v5_27jun.png",
+        "date": "2026-08-03",
+        "hora": "08:00",
+        "image": "post13_v8_03ago.png",
         "caption": """Em maio de 2026, a Meta anunciou planos de IA integrados a todos os seus apps — incluindo WhatsApp. 📡
 
 O canal que já era o mais usado pelos brasileiros ficou ainda mais poderoso para negócios.
@@ -331,9 +331,9 @@ O futuro chegou. Você está dentro ou fora? 🔗 wasfit.com.br
     },
     {
         "num": "14",
-        "date": "2026-06-29",
-        "hora": "08:00",
-        "image": "post14_v5_30jun.png",
+        "date": "2026-08-05",
+        "hora": "12:00",
+        "image": "post14_v8_05ago.png",
         "caption": """Antes de sair contratando qualquer ferramenta, se faz essas perguntas: 📋
 
 ✅ Você sabe de onde vêm seus leads hoje?
