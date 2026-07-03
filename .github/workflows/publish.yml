@@ -2,23 +2,24 @@ name: WasFit Instagram Publisher
 
 on:
   schedule:
-    # ── Horários principais (BRT = UTC-3) ─────────────────────────
-    # Segunda 08:00 BRT = 11:00 UTC  → posts 02, 05, 08, 11, 14
-    - cron: '0 11 * * 1'
-    # Quarta  12:00 BRT = 15:00 UTC  → posts 03, 06, 09, 12
-    - cron: '0 15 * * 3'
-    # Sexta   17:00 BRT = 20:00 UTC  → posts 04, 07, 10, 13
-    - cron: '0 20 * * 5'
+    # ── Horários principais (BRT = UTC-3) — todo dia, pois a cadência ──
+    # ── agora é a cada 2 dias e cruza todos os dias da semana ──────────
+    # 08:00 BRT = 11:00 UTC
+    - cron: '0 11 * * *'
+    # 12:00 BRT = 15:00 UTC
+    - cron: '0 15 * * *'
+    # 17:00 BRT = 20:00 UTC
+    - cron: '0 20 * * *'
 
     # ── Backup +30 min (caso a tentativa principal falhe) ─────────
-    - cron: '30 11 * * 1'   # Segunda 08:30 BRT
-    - cron: '30 15 * * 3'   # Quarta  12:30 BRT
-    - cron: '30 20 * * 5'   # Sexta   17:30 BRT
+    - cron: '30 11 * * *'   # 08:30 BRT
+    - cron: '30 15 * * *'   # 12:30 BRT
+    - cron: '30 20 * * *'   # 17:30 BRT
 
     # ── Backup +60 min (segunda barreira de contenção) ───────────
-    - cron: '0 12 * * 1'    # Segunda 09:00 BRT
-    - cron: '0 16 * * 3'    # Quarta  13:00 BRT
-    - cron: '0 21 * * 5'    # Sexta   18:00 BRT
+    - cron: '0 12 * * *'    # 09:00 BRT
+    - cron: '0 16 * * *'    # 13:00 BRT
+    - cron: '0 21 * * *'    # 18:00 BRT
 
   # Disparo manual pelo GitHub
   workflow_dispatch:
